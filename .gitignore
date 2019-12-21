@@ -1,0 +1,9 @@
+
+*.config
+*.cache
+*.ide-wal
+*.ide-shm
+*.ide
+*.lock
+S-rk_2/Properties/AssemblyInfo.cs
+.vs/S-rk_2/v16/.suo
