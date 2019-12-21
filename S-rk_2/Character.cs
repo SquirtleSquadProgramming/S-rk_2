@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using S_rk_2.ast;
+using S_rk_2.ast.Items;
 
 namespace S_rk_2
 {
@@ -44,7 +45,7 @@ namespace S_rk_2
         /// <summary>
         /// List for Inventory
         /// </summary>
-        public static List<item> Inventory = new List<item>();
+        public static List<Item> Inventory = new List<Item>();
 
         /// <summary>
         ///  Dictionary for settings, accessed by setting in []: eg. Character.Settings["SpeechSpeed"]
