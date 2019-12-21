@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using S_rk_2.ast;
+using S_rk_2.ast.Items;
 
 namespace S_rk_2
 {
@@ -12,6 +13,7 @@ namespace S_rk_2
     {
         static void Main(string[] args)
         {
+            Debug.Print("blank".ToItem().Name);
         }
     }
 }

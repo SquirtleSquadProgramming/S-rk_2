@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using S_rk_2.ast.Items.General;
 
 namespace S_rk_2.ast.Items
 {
     public class Item
     {
-        public const int Unsellable = -1;
+        public bool Sellable { get; set; }
         public int ID { get; set; }
         public int Price { get; set; }
         public string Name { get; set; } // CANNOT EXCEDE 20 CHARACTERS
@@ -16,11 +18,12 @@ namespace S_rk_2.ast.Items
         public string Image { get; set; }
         public Dictionary<string, dynamic> Attributes { get; set; }
 
-        public Item(int _ID, int _Price, string _Name, string _Description, string _Image, Dictionary<string, dynamic> _Attributes)
+        public Item(bool Sellable_, int _ID, int _Price, string _Name, string _Description, string _Image, Dictionary<string, dynamic> _Attributes)
         {
             if (_Name.Length > 20)
                 throw new LengthException($"Exception with item name's length as it excedes the maximum of 20 characters. Name: {_Name} || ID: {_ID}");
 
+            Sellable = Sellable_;
             ID = _ID;
             Price = _Price;
             Name = _Name;
@@ -33,7 +36,8 @@ namespace S_rk_2.ast.Items
         {
             Console.WriteLine($"ITEM:        {item.Name} [ID: {item.ID}]");
             Console.WriteLine($"DESCRIPTION: {item.Description}");
-            Console.WriteLine($"VALUE:       {item.Price} Ethryl");
+            if (item.Sellable)
+                Console.WriteLine($"VALUE:       {item.Price} Ethryl"); 
             Console.WriteLine(item.Image);
             Console.WriteLine($"ATTRIBUTES:  ");
             foreach (KeyValuePair<string, dynamic> attribute in item.Attributes)
@@ -43,13 +47,19 @@ namespace S_rk_2.ast.Items
             Console.WriteLine("\n");
         }
 
-        [Serializable]
-        public class UnknownException : Exception
+        public static List<Item> Items = new List<Item>()
         {
-            public UnknownException() { }
-            public UnknownException(string Message) { }
-            public UnknownException(string Message, Exception inner) { }
-            protected UnknownException(SerializationInfo info, StreamingContext context) { }
+            blank.ToItem()
+        };
+
+        #region Exception Stuff
+        [Serializable]
+        public class UnknownItemException : Exception
+        {
+            public UnknownItemException() { }
+            public UnknownItemException(string Message) { }
+            public UnknownItemException(string Message, Exception inner) { }
+            protected UnknownItemException(SerializationInfo info, StreamingContext context) { }
         }
 
         [Serializable]
@@ -60,5 +70,6 @@ namespace S_rk_2.ast.Items
             public LengthException(string message, Exception innerException) { }
             protected LengthException(SerializationInfo info, StreamingContext context) { }
         }
+        #endregion
     }
 }

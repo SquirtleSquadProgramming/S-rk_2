@@ -1,0 +1,6 @@
+D:\Documents\Coding\S-rk_2\S-rk_2\S-rk_2\bin\Debug\S-rk_2.exe.config
+D:\Documents\Coding\S-rk_2\S-rk_2\S-rk_2\bin\Debug\S-rk_2.exe
+D:\Documents\Coding\S-rk_2\S-rk_2\S-rk_2\bin\Debug\S-rk_2.pdb
+D:\Documents\Coding\S-rk_2\S-rk_2\S-rk_2\obj\Debug\S-rk_2.csprojAssemblyReference.cache
+D:\Documents\Coding\S-rk_2\S-rk_2\S-rk_2\obj\Debug\S-rk_2.exe
+D:\Documents\Coding\S-rk_2\S-rk_2\S-rk_2\obj\Debug\S-rk_2.pdb
