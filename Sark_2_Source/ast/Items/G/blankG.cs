@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S_rk_2.ast.Items.W
+namespace Sark_2_Source.ast.Items.G
 {
-    static class blankW
+    static class blankG
     {
         public static Dictionary<string, dynamic> Attributes = new Dictionary<string, dynamic>();
         public static bool Sellable = false;
-        public static float ID = -1.2f;
+        public static float ID = -1.1f;
         public static int Price = -1;
-        public static string Name = "blankW";
+        public static string Name = "blankG";
         public static string Description = "blank dev item";
         public static string Image = "";
         public static Item ToItem() => new Item(Sellable, ID, Price, Name, Description, Image, Attributes);

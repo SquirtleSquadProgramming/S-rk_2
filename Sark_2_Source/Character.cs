@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using S_rk_2.ast;
-using S_rk_2.ast.Items;
+using Sark_2_Source.ast;
+using Sark_2_Source.ast.Items;
 using System.IO;
 
-namespace S_rk_2
+namespace Sark_2_Source
 {
     public static class Character
     {
