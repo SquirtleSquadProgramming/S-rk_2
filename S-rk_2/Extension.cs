@@ -9,51 +9,57 @@ namespace S_rk_2
 {
     public static class Extension
     {
+        /// <summary>
+        /// Gets Item from Name
+        /// </summary>
+        /// <param name="Name">The Name of the Item</param>
+        /// <returns>An Item object</returns>
         public static Item ToItem(this string Name)
         {
-            Item outItem = Item.Items[0];
-            foreach (Item i in Item.Items)
-                if (i.Name == Name)
+            Item outItem = IDs.Items[0]; // Setting outItem to G/blank.cs
+            foreach (Item i in IDs.Items) // Iterating through all items
+                if (i.Name == Name) // If the name matches
                     outItem = i;
-            if (outItem.ID == -1)
+            if (outItem.ID == -1.1f || outItem.ID == -1.2f) // If blank throw error
                 throw new Item.UnknownItemException("Blank item");
-            return outItem;
+            return outItem; // returning the Item object
         }
 
-        public static Item ToItem(this int ID)
+        /// <summary>
+        /// Gets Item from ID
+        /// </summary>
+        /// <param name="ID">The ID of the Item</param>
+        /// <returns>An Item object</returns>
+        public static Item ToItem(this float ID)
         {
-            Item outItem = Item.Items[0];
-            foreach (Item i in Item.Items)
-                if (i.ID == ID)
+            Item outItem = IDs.Items[0]; // Setting outItem to G/blank.cs
+            foreach (Item i in IDs.Items) // Iterating through all items
+                if (i.ID == ID) // If the name matches
                     outItem = i;
-            if (outItem.ID == -1)
+            if (outItem.ID == -1.1f || outItem.ID == -1.2f) // If blank throw error
                 throw new Item.UnknownItemException("Blank item");
-            return outItem;
+            return outItem; // returning the Item object
         }
 
-        public static string ToString(this int ID)
-        {
-            Item outItem = Item.Items[0];
-            foreach (Item i in Item.Items)
-                if (i.ID == ID)
-                    outItem = i;
-            if (outItem.ID == -1)
-                throw new Item.UnknownItemException("Blank item");
-            return outItem.Name;
-        }
+        /// <summary>
+        /// Gets the Name of the Item with the inputted ID
+        /// </summary>
+        /// <param name="ID">The ID of the Item</param>
+        /// <returns>The Name of the Item</returns>
+        public static string ToString(this float ID) => ID.ToItem().Name;
 
-        public static int ToInt(this string Name)
-        {
-            Item outItem = Item.Items[0];
-            foreach (Item i in Item.Items)
-                if (i.Name == Name)
-                    outItem = i;
-            if (outItem.ID == -1)
-                throw new Item.UnknownItemException("Blank item");
-            return outItem.ID;
-        }
+        /// <summary>
+        /// Returns the ID of the Item with the inputed name
+        /// </summary>
+        /// <param name="Name">Name of item</param>
+        /// <returns>The ID of the Item </returns>
+        public static float ToInt(this string Name) => Name.ToItem().ID;
 
-        public static string Print(this Item item)
+        /// <summary>
+        /// Prints the information of the Item
+        /// </summary>
+        /// <param name="item">The Item to print the info</param>
+        public static void Print(this Item item)
         {
             Console.WriteLine($"ITEM:        {item.Name} [ID: {item.ID}]");
             Console.WriteLine($"DESCRIPTION: {item.Description}");
@@ -62,11 +68,8 @@ namespace S_rk_2
             Console.WriteLine(item.Image);
             Console.WriteLine($"ATTRIBUTES:  ");
             foreach (KeyValuePair<string, dynamic> attribute in item.Attributes)
-            {
                 Console.WriteLine($"{attribute.Key} : {attribute.Value}");
-            }
             Console.WriteLine("\n");
-            return "";
         }
     }
 }

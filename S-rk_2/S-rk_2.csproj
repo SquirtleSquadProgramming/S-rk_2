@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ast\Items\General\blank.cs" />
+    <Compile Include="ast\Items\G\blankG.cs" />
+    <Compile Include="ast\Items\IDs.cs" />
     <Compile Include="ast\Items\Item.cs" />
+    <Compile Include="ast\Items\W\blankW.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Program.cs" />
@@ -53,8 +55,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ast\Items\Weapons\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

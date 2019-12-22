@@ -4,21 +4,21 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using S_rk_2.ast.Items.General;
+using S_rk_2.ast.Items.G;
 
 namespace S_rk_2.ast.Items
 {
     public class Item
     {
         public bool Sellable { get; set; }
-        public int ID { get; set; }
+        public float ID { get; set; }
         public int Price { get; set; }
         public string Name { get; set; } // CANNOT EXCEDE 20 CHARACTERS
         public string Description { get; set; }
         public string Image { get; set; }
         public Dictionary<string, dynamic> Attributes { get; set; }
 
-        public Item(bool Sellable_, int _ID, int _Price, string _Name, string _Description, string _Image, Dictionary<string, dynamic> _Attributes)
+        public Item(bool Sellable_, float _ID, int _Price, string _Name, string _Description, string _Image, Dictionary<string, dynamic> _Attributes)
         {
             if (_Name.Length > 20)
                 throw new LengthException($"Exception with item name's length as it excedes the maximum of 20 characters. Name: {_Name} || ID: {_ID}");
@@ -31,11 +31,6 @@ namespace S_rk_2.ast.Items
             Image = _Image;
             Attributes = _Attributes;
         }
-
-        public static List<Item> Items = new List<Item>()
-        {
-            blank.ToItem()
-        };
 
         #region Exception Stuff
         [Serializable]
