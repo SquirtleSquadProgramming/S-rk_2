@@ -7,6 +7,6 @@
 *.lock
 S-rk_2/Properties/AssemblyInfo.cs
 .vs/S-rk_2/v16/.suo
-S-rk_2/Proerties/
-S-rk_2/bin/
-S-rk_2/obj/
+S-rk_2/Proerties/*
+S-rk_2/bin/*
+S-rk_2/obj/*
