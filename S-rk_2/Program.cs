@@ -13,7 +13,7 @@ namespace S_rk_2
     {
         static void Main(string[] args)
         {
-            Debug.Print("blank".ToItem().Name);
+            "blank".ToItem().Print();
         }
     }
 }

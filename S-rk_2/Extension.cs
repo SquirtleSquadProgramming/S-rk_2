@@ -52,5 +52,21 @@ namespace S_rk_2
                 throw new Item.UnknownItemException("Blank item");
             return outItem.ID;
         }
+
+        public static string Print(this Item item)
+        {
+            Console.WriteLine($"ITEM:        {item.Name} [ID: {item.ID}]");
+            Console.WriteLine($"DESCRIPTION: {item.Description}");
+            if (item.Sellable)
+                Console.WriteLine($"VALUE:       {item.Price} Ethryl");
+            Console.WriteLine(item.Image);
+            Console.WriteLine($"ATTRIBUTES:  ");
+            foreach (KeyValuePair<string, dynamic> attribute in item.Attributes)
+            {
+                Console.WriteLine($"{attribute.Key} : {attribute.Value}");
+            }
+            Console.WriteLine("\n");
+            return "";
+        }
     }
 }
