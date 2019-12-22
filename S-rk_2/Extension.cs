@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using S_rk_2.ast.Items;
 
@@ -71,5 +72,12 @@ namespace S_rk_2
                 Console.WriteLine($"{attribute.Key} : {attribute.Value}");
             Console.WriteLine("\n");
         }
+
+        /// <summary>
+        /// Removes all non Alphanumeric characters
+        /// </summary>
+        /// <param name="input">The string to remove the characters from</param>
+        /// <returns>An only Alphanumeric string</returns>
+        public static string ToAlphaNum(this string input) => Regex.Replace(input, "[\\w\\d ]+", "", RegexOptions.Compiled);
     }
 }

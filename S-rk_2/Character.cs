@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using S_rk_2.ast;
 using S_rk_2.ast.Items;
+using System.IO;
 
 namespace S_rk_2
 {
@@ -71,6 +72,25 @@ namespace S_rk_2
             {"stealth", 0 },
         };
 
-
+        public static void SaveCharacter()
+        {
+            string Output = "";
+            foreach (KeyValuePair<string, int> entry in intDict)
+                Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
+            Output += "§";
+            foreach (KeyValuePair<string, string> entry in strDict)
+                Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
+            Output += "§";
+            foreach (KeyValuePair<string, dynamic> entry in Settings)
+                Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
+            Output += "§";
+            foreach (KeyValuePair<string, int> entry in AbilityScores)
+                Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
+            Output += "§";
+            foreach (Item item in Inventory)
+                Output += "'" + item.ID.ToString() + "',";
+            string fileURL = Environment.CurrentDirectory + "\\" + strDict["name"] + ".save";
+            File.WriteAllText(fileURL, Output);
+        }
     }
 }
