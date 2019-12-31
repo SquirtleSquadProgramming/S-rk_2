@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -42,6 +43,20 @@ namespace Sark_2_Source
             return outItem; // returning the Item object
         }
 
+        public static ConsoleColor GetColor(this ConsoleColor Colour)
+        {
+            Debug.Print(Boolean.Parse(Character.Settings["DarkTheme"]).ToString());
+            if (Boolean.Parse(Character.Settings["DarkTheme"]))
+                return Colour;
+            Dictionary<int, int> Colours = new Dictionary<int, int>()
+            {
+                { 15, 0 }, { 0, 15 }, { 9, 1 }, { 1, 9 }, { 12, 4 },
+                { 4, 12 }, { 10, 2 }, { 2, 10 }, { 14, 6 },{ 6, 14 },
+                { 13, 5 }, { 5, 15 }, { 7, 8 }, { 8, 7 }
+            };
+            return (ConsoleColor)Colours[(int)Colour];
+        }
+
         /// <summary>
         /// Gets the Name of the Item with the inputted ID
         /// </summary>
@@ -81,22 +96,33 @@ namespace Sark_2_Source
         public static string ToAlphaNum(this string input) => Regex.Replace(input, "[\\w\\d ]+", "", RegexOptions.Compiled);
 
         /// <summary>
-        /// A class for GUI's
+        /// Shows the Inventory Menu
         /// </summary>
-        public static class Show
+        /// <param name="_Inventory">The characters inventory List</param>
+        public static void Menu(this List<Item> _Inventory)
         {
-            /// <summary>
-            /// Shows the Inventory Menu
-            /// </summary>
-            /// <param name="_Inventory">The characters inventory List</param>
-            public static void Menu()
+            Item[] Inventory = _Inventory.ToArray();
+            while (true)
             {
-                Item[] Inventory = Character.Inventory.ToArray();
-                while (true)
+                Console.Clear();
+                Console.BackgroundColor = ConsoleColor.Black.GetColor();
+                Console.ForegroundColor = ConsoleColor.White.GetColor();
+                Console.WriteLine("=-=-=-=-=-=-=-=-=-= INVENTORY =-=-=-=-=-=-=-=-=-=");
+                if (Inventory.Length <= 25)
                 {
-                    Console.Clear();
-                    Console.WriteLine("=-=-=-=-=-=-=-=-=-= INVENTORY =-=-=-=-=-=-=-=-=-=");
+                    for (int x = 0; x < Inventory.Length; x++)
+                    {
+                        Console.SetCursorPosition(0, x + 1);
+                        Console.ForegroundColor = ConsoleColor.Yellow.GetColor();
+                        Debug.Print(ConsoleColor.Yellow.GetColor().ToString());
+                        Console.Write($"{x + 1}.");
+                        Console.ForegroundColor = ConsoleColor.White.GetColor();
+                        Console.SetCursorPosition(4, x + 1);
+                        Console.Write($"{Inventory[x].Name}");
+                    }
                 }
+
+                Console.ReadKey();
             }
         }
     }

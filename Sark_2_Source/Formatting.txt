@@ -1,5 +1,5 @@
 ﻿The size of the console is 119 x 29
-"Single-size" menus and text is to be less than ~50 characters long
+"Single-size" menus and text is to be less than 50 characters long and 26 lines long
 
 Titles are to be inside the "-=-=-=" style and in caps
 eg.

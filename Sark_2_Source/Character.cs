@@ -53,11 +53,11 @@ namespace Sark_2_Source
         /// <summary>
         ///  Dictionary for settings, accessed by setting in []: eg. Character.Settings["SpeechSpeed"]
         /// </summary>
-        public static Dictionary<string, dynamic> Settings = new Dictionary<string, dynamic>()
+        public static Dictionary<string, string> Settings = new Dictionary<string, string>()
         {
             {"SpeechSpeed", "4"},
             {"Profanity", "false"},
-            {"ColourTheme", "dark"},
+            {"DarkTheme", "true"},
             {"SpecialEffects", "true"}
         };
 
@@ -83,7 +83,7 @@ namespace Sark_2_Source
             foreach (KeyValuePair<string, string> entry in strDict)
                 Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
             Output = Output.Substring(0, Output.Length - 1) + "§";
-            foreach (KeyValuePair<string, dynamic> entry in Settings)
+            foreach (KeyValuePair<string, string> entry in Settings)
                 Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
             Output = Output.Substring(0, Output.Length - 1) + "§";
             foreach (KeyValuePair<string, int> entry in AbilityScores)
@@ -110,7 +110,7 @@ namespace Sark_2_Source
             foreach (string x in data1[2])
                 Settings[x.Split(':')[0].Replace("\'", "")] = x.Split(':')[1].Replace("\'", "");
             foreach (string x in data1[3])
-                Settings[x.Split(':')[0].Replace("\'", "")] = Int32.Parse(x.Split(':')[1].Replace("\'", ""));
+                AbilityScores[x.Split(':')[0].Replace("\'", "")] = Int32.Parse(x.Split(':')[1].Replace("\'", ""));
             foreach (string x in data1[4])
                 Inventory.Add(float.Parse(x.Replace("'", "")).ToItem());
         }

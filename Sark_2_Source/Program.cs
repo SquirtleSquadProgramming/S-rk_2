@@ -12,7 +12,11 @@ namespace Sark_2_Source
     class Program
     {
         static void Main(string[] args)
-        {   
+        {
+            Character.Inventory.Add((-1.1f).ToItem());
+            Character.Inventory.Add((-1.2f).ToItem());
+            Character.Settings["DarkTheme"] = "false";
+            Character.Inventory.Menu();
         }
     }
 }
