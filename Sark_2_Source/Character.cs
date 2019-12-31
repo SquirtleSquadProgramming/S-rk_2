@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Sark_2_Source.ast;
 using Sark_2_Source.ast.Items;
 using System.IO;
+using System.Diagnostics;
+using Sark_2_Source;
 
 namespace Sark_2_Source
 {
@@ -53,10 +55,10 @@ namespace Sark_2_Source
         /// </summary>
         public static Dictionary<string, dynamic> Settings = new Dictionary<string, dynamic>()
         {
-            {"SpeechSpeed", 4},
-            {"Profanity", false},
+            {"SpeechSpeed", "4"},
+            {"Profanity", "false"},
             {"ColourTheme", "dark"},
-            {"SpecialEffects", true}
+            {"SpecialEffects", "true"}
         };
 
         /// <summary>
@@ -77,20 +79,40 @@ namespace Sark_2_Source
             string Output = "";
             foreach (KeyValuePair<string, int> entry in intDict)
                 Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
-            Output += "§";
+            Output = Output.Substring(0, Output.Length - 1) + "§";
             foreach (KeyValuePair<string, string> entry in strDict)
                 Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
-            Output += "§";
+            Output = Output.Substring(0, Output.Length - 1) + "§";
             foreach (KeyValuePair<string, dynamic> entry in Settings)
                 Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
-            Output += "§";
+            Output = Output.Substring(0, Output.Length - 1) + "§";
             foreach (KeyValuePair<string, int> entry in AbilityScores)
                 Output += String.Format("'{0}':'{1}',", entry.Key, entry.Value);
-            Output += "§";
+            Output = Output.Substring(0, Output.Length - 1) + "§";
             foreach (Item item in Inventory)
                 Output += "'" + item.ID.ToString() + "',";
             string fileURL = Environment.CurrentDirectory + "\\" + strDict["name"] + ".save";
-            File.WriteAllText(fileURL, Output);
+            File.WriteAllText(fileURL, Output.Substring(0, Output.Length - 1));
+        }
+
+        public static void LoadCharacter(string nameOrPath)
+        {
+            if (!nameOrPath.Contains(".save"))
+                nameOrPath = Environment.CurrentDirectory + "\\" + nameOrPath + ".save";
+            string[] data = File.ReadAllText(nameOrPath).Split('§');
+            string[][] data1 = new string[5][];
+            for (int i = 0; i < data.Length; i++)
+                data1[i] = data[i].Split(',');
+            foreach (string x in data1[0])
+                intDict[x.Split(':')[0].Replace("\'", "")] = Int32.Parse(x.Split(':')[1].Replace("\'", ""));
+            foreach (string x in data1[1])
+                strDict[x.Split(':')[0].Replace("\'", "")] = x.Split(':')[1].Replace("\'", "");
+            foreach (string x in data1[2])
+                Settings[x.Split(':')[0].Replace("\'", "")] = x.Split(':')[1].Replace("\'", "");
+            foreach (string x in data1[3])
+                Settings[x.Split(':')[0].Replace("\'", "")] = Int32.Parse(x.Split(':')[1].Replace("\'", ""));
+            foreach (string x in data1[4])
+                Inventory.Add(float.Parse(x.Replace("'", "")).ToItem());
         }
     }
 }

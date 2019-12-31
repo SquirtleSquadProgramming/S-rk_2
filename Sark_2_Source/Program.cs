@@ -12,8 +12,7 @@ namespace Sark_2_Source
     class Program
     {
         static void Main(string[] args)
-        {
-            "blank".ToItem().Print();
+        {   
         }
     }
 }

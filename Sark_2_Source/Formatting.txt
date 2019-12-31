@@ -1,0 +1,6 @@
+﻿The size of the console is 119 x 29
+"Single-size" menus and text is to be less than ~50 characters long
+
+Titles are to be inside the "-=-=-=" style and in caps
+eg.
+=-=-=-=-=-=-=-=-=-= INVENTORY =-=-=-=-=-=-=-=-=-=

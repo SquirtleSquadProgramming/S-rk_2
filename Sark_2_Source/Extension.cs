@@ -21,8 +21,8 @@ namespace Sark_2_Source
             foreach (Item i in IDs.Items) // Iterating through all items
                 if (i.Name == Name) // If the name matches
                     outItem = i;
-            if (outItem.ID == -1.1f || outItem.ID == -1.2f) // If blank throw error
-                throw new Item.UnknownItemException("Blank item");
+            //if (outItem.ID == -1.1f || outItem.ID == -1.2f) // If blank throw error
+            //    throw new Item.UnknownItemException("Blank item");
             return outItem; // returning the Item object
         }
 
@@ -37,8 +37,8 @@ namespace Sark_2_Source
             foreach (Item i in IDs.Items) // Iterating through all items
                 if (i.ID == ID) // If the name matches
                     outItem = i;
-            if (outItem.ID == -1.1f || outItem.ID == -1.2f) // If blank throw error
-                throw new Item.UnknownItemException("Blank item");
+            //if (outItem.ID == -1.1f || outItem.ID == -1.2f) // If blank throw error
+            //    throw new Item.UnknownItemException("Blank item");
             return outItem; // returning the Item object
         }
 
@@ -79,5 +79,25 @@ namespace Sark_2_Source
         /// <param name="input">The string to remove the characters from</param>
         /// <returns>An only Alphanumeric string</returns>
         public static string ToAlphaNum(this string input) => Regex.Replace(input, "[\\w\\d ]+", "", RegexOptions.Compiled);
+
+        /// <summary>
+        /// A class for GUI's
+        /// </summary>
+        public static class Show
+        {
+            /// <summary>
+            /// Shows the Inventory Menu
+            /// </summary>
+            /// <param name="_Inventory">The characters inventory List</param>
+            public static void Menu()
+            {
+                Item[] Inventory = Character.Inventory.ToArray();
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine("=-=-=-=-=-=-=-=-=-= INVENTORY =-=-=-=-=-=-=-=-=-=");
+                }
+            }
+        }
     }
 }
