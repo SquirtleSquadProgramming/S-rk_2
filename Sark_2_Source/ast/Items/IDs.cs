@@ -16,10 +16,10 @@ namespace Sark_2_Source.ast.Items
         public static List<Item> Items = new List<Item>()
         {
             // Items
-            blankG.ToItem(),
+            blankg.ToItem(),
 
             // Weapons
-            blankW.ToItem()
+            blankw.ToItem()
         };
     }
 }

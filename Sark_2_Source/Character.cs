@@ -55,7 +55,7 @@ namespace Sark_2_Source
         /// </summary>
         public static Dictionary<string, string> Settings = new Dictionary<string, string>()
         {
-            {"SpeechSpeed", "4"},
+            {"SpeechSpeed", "0.5"},
             {"Profanity", "false"},
             {"DarkTheme", "true"},
             {"SpecialEffects", "true"}

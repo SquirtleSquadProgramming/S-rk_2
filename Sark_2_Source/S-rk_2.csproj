@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ast\Items\G\blankG.cs" />
+    <Compile Include="ast\Items\G\blankg.cs" />
     <Compile Include="ast\Items\IDs.cs" />
     <Compile Include="ast\Items\Item.cs" />
-    <Compile Include="ast\Items\W\blankW.cs" />
+    <Compile Include="ast\Items\W\blankw.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Program.cs" />

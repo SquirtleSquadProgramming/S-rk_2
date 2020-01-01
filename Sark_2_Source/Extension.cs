@@ -43,9 +43,26 @@ namespace Sark_2_Source
             return outItem; // returning the Item object
         }
 
+        /// <summary>
+        /// Waits the amount of Miliseconds x SpeechSpeed
+        /// </summary>
+        /// <param name="Miliseconds">Amount of Miliseconds to wait</param>
+        public static void Wait(this int Miliseconds)
+        {
+            Miliseconds = int.Parse((Miliseconds * float.Parse(Character.Settings["SpeechSpeed"])).ToString());
+            Stopwatch s = new Stopwatch();
+            s.Start();
+            while (s.ElapsedMilliseconds < Miliseconds)
+                continue;
+        }
+
+        /// <summary>
+        /// Get's the correct colour (dependant on the DarkTheme setting)
+        /// </summary>
+        /// <param name="Colour">A Colour to convert to the correct Colour</param>
+        /// <returns></returns>
         public static ConsoleColor GetColor(this ConsoleColor Colour)
         {
-            Debug.Print(Boolean.Parse(Character.Settings["DarkTheme"]).ToString());
             if (Boolean.Parse(Character.Settings["DarkTheme"]))
                 return Colour;
             Dictionary<int, int> Colours = new Dictionary<int, int>()
@@ -75,9 +92,16 @@ namespace Sark_2_Source
         /// Prints the information of the Item
         /// </summary>
         /// <param name="item">The Item to print the info</param>
-        public static void Print(this Item item)
+        public static void Print(this Item item) // needs work (for equipting the item etc.)
         {
-            Console.WriteLine($"ITEM:        {item.Name} [ID: {item.ID}]");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White.GetColor();
+            Console.SetCursorPosition(0, 0);
+            Console.Write($"-=-=-=-=-= {item.Name.ToUpper()}");
+            Console.SetCursorPosition(32, 0);
+            Console.Write($"[{item.ID}");
+            Console.SetCursorPosition(38, 0);
+            Console.WriteLine($"] =-=-=-=-=-");
             Console.WriteLine($"DESCRIPTION: {item.Description}");
             if (item.Sellable)
                 Console.WriteLine($"VALUE:       {item.Price} Ethryl");
@@ -85,7 +109,9 @@ namespace Sark_2_Source
             Console.WriteLine($"ATTRIBUTES:  ");
             foreach (KeyValuePair<string, dynamic> attribute in item.Attributes)
                 Console.WriteLine($"{attribute.Key} : {attribute.Value}");
-            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.DarkGray.GetColor();
+            Console.WriteLine("\n\nPress any key to continue...");
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -118,11 +144,51 @@ namespace Sark_2_Source
                         Console.Write($"{x + 1}.");
                         Console.ForegroundColor = ConsoleColor.White.GetColor();
                         Console.SetCursorPosition(4, x + 1);
-                        Console.Write($"{Inventory[x].Name}");
+                        Console.Write($"{Inventory[x].Name.ToUpper()}");
                     }
                 }
-
-                Console.ReadKey();
+                else
+                {
+                    for (int x = 0; x < 25; x++)
+                    {
+                        Console.SetCursorPosition(0, x + 1);
+                        Console.ForegroundColor = ConsoleColor.Yellow.GetColor();
+                        Debug.Print(ConsoleColor.Yellow.GetColor().ToString());
+                        Console.Write($"{x + 1}.");
+                        Console.ForegroundColor = ConsoleColor.White.GetColor();
+                        Console.SetCursorPosition(4, x + 1);
+                        Console.Write($"{Inventory[x].Name.ToUpper()}");
+                    }
+                    for (int x = 25; x < Inventory.Length; x++)
+                    {
+                        Console.SetCursorPosition(25, x - 24);
+                        Console.ForegroundColor = ConsoleColor.Yellow.GetColor();
+                        Debug.Print(ConsoleColor.Yellow.GetColor().ToString());
+                        Console.Write($"{x + 1}.");
+                        Console.ForegroundColor = ConsoleColor.White.GetColor();
+                        Console.SetCursorPosition(29, x - 24);
+                        Console.Write($"{Inventory[x].Name.ToUpper()}");
+                    }
+                }
+                Console.SetCursorPosition(0, 26);
+                Console.Write("Enter a number or 'x'.");
+                Console.SetCursorPosition(51, 0);
+                string input = Console.ReadLine().ToLower();
+                switch (input)
+                {
+                    case "x":
+                        break;
+                    default:
+                        try { Inventory[Int32.Parse(input) - 1].Print(); }
+                        catch (Exception e)
+                        {
+                            Console.SetCursorPosition(0, 26);
+                            Console.WriteLine("Please choose a number or exit the menu");
+                            (5000).Wait();
+                        }
+                        continue;
+                }
+                break;
             }
         }
     }
